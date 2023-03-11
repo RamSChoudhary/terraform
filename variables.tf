@@ -5,3 +5,8 @@ variable "global_settings" {
 variable "resource_groups" {
   default = {}
 }
+variable "provider_azurerm_features_keyvault" {
+  default = {
+    purge_soft_delete_on_destroy = true
+  }
+}
