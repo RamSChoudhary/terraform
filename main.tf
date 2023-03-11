@@ -6,7 +6,7 @@ terraform {
       version = "3.47.0"
     }
   }
-     cloud "remote" {
+     cloud {
          # The name of your Terraform Cloud organization.
          organization = "Learning1441"
 #
