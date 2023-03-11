@@ -11,3 +11,7 @@ resource_groups = {
     name = "example-virtual-machine-rg1"
   }
 }
+provider_azurerm_features_keyvault = {
+  // set to true to cleanup the CI
+  purge_soft_delete_on_destroy = true
+}
