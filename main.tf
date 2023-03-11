@@ -26,7 +26,15 @@ provider "azurerm" {
   }
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "example"
-  location = "West Europe"
-}   
+#resource "azurerm_resource_group" "example" {
+#  name     = "example"
+#  location = "West Europe"
+#}
+
+module "caf" {
+  source  = "aztfmod/caf/azurerm"
+  version = "5.3.11"
+
+  global_settings = var.global_settings
+  resource_groups = var.resource_groups
+ }
