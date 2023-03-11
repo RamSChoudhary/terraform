@@ -6,6 +6,9 @@ terraform {
   #    version = "3.47.0"
   #  }
   #}
+  required_providers {
+  }
+  required_version = ">= 1.1.0"
      cloud {
          # The name of your Terraform Cloud organization.
          organization = "Learning1441"
@@ -16,6 +19,14 @@ terraform {
          }
        }
 
+}
+
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = var.provider_azurerm_features_keyvault.purge_soft_delete_on_destroy
+    }
+  }
 }
 
 #provider "azurerm" {
