@@ -1,11 +1,11 @@
 
 terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "3.47.0"
-    }
-  }
+  #required_providers {
+  #  azurerm = {
+  #    source = "hashicorp/azurerm"
+  #    version = "3.47.0"
+  #  }
+  #}
      cloud {
          # The name of your Terraform Cloud organization.
          organization = "Learning1441"
