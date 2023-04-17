@@ -16,3 +16,28 @@ resource "azurerm_key_vault" "test-kv" {
 
   sku_name = "standard"
 }
+
+resource "azurerm_key_vault_key" "test-key" {
+  name         = "test-key"
+  key_vault_id = azurerm_key_vault.test-kv.id
+  key_type     = "RSA"
+  key_size     = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
+
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+
+    expire_after         = "P90D"
+    notify_before_expiry = "P29D"
+  }
+}
