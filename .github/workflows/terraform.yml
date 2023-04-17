@@ -84,6 +84,13 @@ jobs:
     #- name: Terraform Format
     #  run: terraform fmt -check
     
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.ARM_CLIENT_ID }}
+        tenant-id: ${{ secrets.ARM_TENANT_ID }}
+        subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+    
     - name: Add Firewall rule
       id: add_firewallrule
       shell: bash
