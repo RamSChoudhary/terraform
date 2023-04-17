@@ -91,31 +91,31 @@ jobs:
     #- name: Terraform Format
     #  run: terraform fmt -check
     
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.ARM_CLIENT_ID }}
-        tenant-id: ${{ secrets.ARM_TENANT_ID }}
-        subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+    #- name: Azure Login
+    #  uses: azure/login@v1
+    #  with:
+    #    client-id: ${{ secrets.ARM_CLIENT_ID }}
+    #    tenant-id: ${{ secrets.ARM_TENANT_ID }}
+    #    subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
     
-    - name: Add Firewall rule
-      id: add_firewallrule
-      shell: bash
-      run: |
-            agentIP=$(curl -s https://api.ipify.org/)
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
-              az keyvault network-rule add \
-                --resource-group test-rg \
-                --name test-kv1441 \
-                --ip-address $agentIP
-            fi
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
-              az keyvault network-rule add \
-                --resource-group test-rg \
-                --name test-kv1441 \
-                --ip-address $agentIP
-            fi
-            sleep 50
+    #- name: Add Firewall rule
+    #  id: add_firewallrule
+    #  shell: bash
+    #  run: |
+    #        agentIP=$(curl -s https://api.ipify.org/)
+    #        if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
+    #          az keyvault network-rule add \
+    #            --resource-group test-rg \
+    #            --name test-kv1441 \
+    #            --ip-address $agentIP
+    #        fi
+    #        if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
+    #          az keyvault network-rule add \
+    #            --resource-group test-rg \
+    #            --name test-kv1441 \
+    #            --ip-address $agentIP
+    #        fi
+    #        sleep 50
 
 
     # Generates an execution plan for Terraform
