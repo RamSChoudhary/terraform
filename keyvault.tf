@@ -31,13 +31,4 @@ resource "azurerm_key_vault_key" "test-key" {
     "verify",
     "wrapKey",
   ]
-
-  rotation_policy {
-    automatic {
-      time_before_expiry = "P30D"
-    }
-
-    expire_after         = "P90D"
-    notify_before_expiry = "P29D"
-  }
 }
