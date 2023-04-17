@@ -103,16 +103,16 @@ jobs:
       shell: bash
       run: |
             agentIP=$(curl -s https://api.ipify.org/)
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv'] | length(@)") > 0 ]]; then
+            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
               az keyvault network-rule add \
                 --resource-group test-rg \
-                --name test-kv \
+                --name test-kv1441 \
                 --ip-address $agentIP
             fi
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-rg'] | length(@)") > 0 ]]; then
+            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
               az keyvault network-rule add \
                 --resource-group test-rg \
-                --name test-rg \
+                --name test-kv1441 \
                 --ip-address $agentIP
             fi
             sleep 50
