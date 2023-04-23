@@ -34,3 +34,44 @@ resource "azurerm_private_endpoint" "test-pe" {
     ]
   }
 }
+
+resource "azurerm_private_dns_zone" "main" {
+  name                = "privatelink.vaultcore.azure.net"
+  resource_group_name = azurerm_resource_group.test-rg.name
+}
+
+resource "azurerm_private_dns_a_record" "pe_kv" {
+  name                = "kv.dns"
+  zone_name           = azurerm_private_dns_zone.main.name
+  resource_group_name = azurerm_resource_group.test-rg.name
+  ttl                 = 300
+  records             = ["1.2.3.4"]
+}
+
+output kv_private_ip {
+  value =   ["1.2.3.4"]
+}
+
+resource "null_resource" "dns_update" {
+  triggers = {
+    priv_fqdn = "${azurerm_private_endpoint.private_endpoint[0].custom_dns_configs[0].fqdn}"
+    priv_ip   = "${azurerm_private_endpoint.private_endpoint[0].custom_dns_configs[0].ip_addresses[0]}"
+  }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = <<EOF
+      echo ${self.triggers.priv_fqdn}
+      bash ${path.module}/dns_update.sh destroy ${self.triggers.priv_fqdn}
+    EOF
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+      echo ${self.triggers.priv_fqdn}
+      echo ${self.triggers.priv_ip}
+      bash ${path.module}/dns_update.sh apply ${self.triggers.priv_fqdn} ${self.triggers.priv_ip}
+      bash ${path.module}/dns_update.sh get ${self.triggers.priv_fqdn}
+    EOF
+  }
+}
