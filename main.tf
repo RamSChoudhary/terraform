@@ -25,6 +25,7 @@ provider "azurerm" {
   features {
     key_vault {
       purge_soft_delete_on_destroy = var.provider_azurerm_features_keyvault.purge_soft_delete_on_destroy
+      recover_soft_deleted_key_vaults = true
     }
   }
 }
