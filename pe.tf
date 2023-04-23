@@ -54,8 +54,8 @@ output kv_private_ip {
 
 resource "null_resource" "dns_update" {
   triggers = {
-    priv_fqdn = "${azurerm_private_endpoint.test-pe[0].custom_dns_configs[0].fqdn}"
-    priv_ip   = "${azurerm_private_endpoint.test-pe[0].custom_dns_configs[0].ip_addresses[0]}"
+    priv_fqdn = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].fqdn}"
+    priv_ip   = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].ip_addresses[0]}"
   }
 
   provisioner "local-exec" {
