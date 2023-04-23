@@ -52,26 +52,26 @@ output kv_private_ip {
   value =   ["1.2.3.4"]
 }
 
-resource "null_resource" "dns_update" {
-  triggers = {
-    priv_fqdn = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].fqdn}"
-    priv_ip   = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].ip_addresses[0]}"
-  }
+#resource "null_resource" "dns_update" {
+#  triggers = {
+#    priv_fqdn = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].fqdn}"
+#    priv_ip   = "${azurerm_private_endpoint.test-pe.custom_dns_configs[0].ip_addresses[0]}"
+#  }
 
-  provisioner "local-exec" {
-    when    = destroy
-    command = <<EOF
-      echo ${self.triggers.priv_fqdn}
-      bash ${path.module}/dns_update.sh destroy ${self.triggers.priv_fqdn}
-    EOF
-  }
+#  provisioner "local-exec" {
+#    when    = destroy
+#    command = <<EOF
+#      echo ${self.triggers.priv_fqdn}
+#      bash ${path.module}/dns_update.sh destroy ${self.triggers.priv_fqdn}
+#    EOF
+#  }
 
-  provisioner "local-exec" {
-    command = <<EOF
-      echo ${self.triggers.priv_fqdn}
-      echo ${self.triggers.priv_ip}
-      bash ${path.module}/dns_update.sh apply ${self.triggers.priv_fqdn} ${self.triggers.priv_ip}
-      bash ${path.module}/dns_update.sh get ${self.triggers.priv_fqdn}
-    EOF
-  }
-}
+#  provisioner "local-exec" {
+#    command = <<EOF
+#      echo ${self.triggers.priv_fqdn}
+#      echo ${self.triggers.priv_ip}
+#      bash ${path.module}/dns_update.sh apply ${self.triggers.priv_fqdn} ${self.triggers.priv_ip}
+#      bash ${path.module}/dns_update.sh get ${self.triggers.priv_fqdn}
+#    EOF
+#  }
+#}
