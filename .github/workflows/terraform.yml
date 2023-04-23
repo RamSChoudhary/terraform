@@ -116,6 +116,7 @@ jobs:
                 --ip-address $agentIP
             fi
             sleep 50
+            echo $agentIP
 
 
     # Generates an execution plan for Terraform
