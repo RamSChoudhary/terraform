@@ -25,7 +25,7 @@
 #     # An example resource that does nothing.
 #     resource "null_resource" "example" {
 #       triggers = {
-#         value = "A example resource that does nothing!"
+#1         value = "A example resource that does nothing!"
 #       }
 #     }
 #
@@ -128,7 +128,6 @@ jobs:
     - name: Terraform Apply
     #  if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: |
-            |
             agentIP=$(curl -s https://api.ipify.org/)
             if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
               az keyvault network-rule add \
