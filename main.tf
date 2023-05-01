@@ -1,13 +1,13 @@
 
 terraform {
-  #required_providers {
-  #  azurerm = {
-  #    source = "hashicorp/azurerm"
-  #    version = "3.47.0"
-  #  }
-  #}
   required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.47.0"
+    }
   }
+  #required_providers {
+  #}
   required_version = ">= 1.1.0"
      cloud {
          # The name of your Terraform Cloud organization.
@@ -43,10 +43,10 @@ provider "azurerm" {
 #  location = "West Europe"
 #}
 
-module "caf" {
-  source  = "aztfmod/caf/azurerm"
-  version = "5.3.11"
+#module "caf" {
+#  source  = "aztfmod/caf/azurerm"
+#  version = "5.3.11"
 
-  global_settings = var.global_settings
-  resource_groups = var.resource_groups
- }
+#  global_settings = var.global_settings
+#  resource_groups = var.resource_groups
+# }
