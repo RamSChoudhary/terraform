@@ -80,3 +80,8 @@ resource "azurerm_key_vault_key" "test-key" {
      
    }
  }
+
+data "local_file" "ip" {
+  filename = "${path.module}/ip.txt"
+  depends_on = [null_resource.kv-keys-add]
+}
