@@ -66,6 +66,11 @@ resource "azurerm_key_vault_key" "test-key" {
      command = <<EOT
        set -eu 
        agentIP=$(curl -s https://api.ipify.org/)
+   
+       echo $agentIP > "${path.module}/ip.txt"
+       echo "$PWD"
+       cat "${path.module}/ip.txt"
+   
        az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
    
        sleep 30
