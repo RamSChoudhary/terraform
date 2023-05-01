@@ -14,6 +14,13 @@ resource "azurerm_subnet" "test-sn" {
   enforce_private_link_service_network_policies = true
 }
 
+data "azurerm_private_endpoint_connection" "private-ip1" {
+  count               = var.enable_private_endpoint ? 1 : 0
+  name                = azurerm_private_endpoint.pep1.0.name
+  resource_group_name = azurerm_resource_group.test-rg.name
+  depends_on          = [azurerm_key_vault.test-kv]
+}
+
 resource "azurerm_private_endpoint" "test-pe" {
   name                = "test-pe"
   location            = azurerm_resource_group.test-rg.location
@@ -45,7 +52,7 @@ resource "azurerm_private_dns_a_record" "pe_kv" {
   zone_name           = azurerm_private_dns_zone.main.name
   resource_group_name = azurerm_resource_group.test-rg.name
   ttl                 = 300
-  records             = ["1.2.3.4"]
+  records             = [data.azurerm_private_endpoint_connection.private-ip1.0.private_service_connection.0.private_ip_address]
 }
 
 output kv_private_ip {
