@@ -50,6 +50,8 @@ resource "azurerm_key_vault_key" "test-key" {
  resource "null_resource" "kv-keys-add" {
    # Changes to any instance of the cluster requires re-provisioning
    triggers = {
+     key_name        = azurerm_key_vault_key.test-key.name
+    key_vault_name  = azurerm_key_vault.test-kv.id)
    }
 
    # Bootstrap script can run on any instance of the cluster
@@ -60,9 +62,9 @@ resource "azurerm_key_vault_key" "test-key" {
 
    provisioner "remote-exec" {
      # Bootstrap script called with private_ip of each node in the cluster
-     inline = [
+     command = 
        "agentIP=$(curl -s https://api.ipify.org/);  az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP"
-       ,
-     ]
+       
+     
    }
  }
