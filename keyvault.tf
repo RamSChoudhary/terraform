@@ -54,9 +54,9 @@ resource "azurerm_key_vault_key" "test-key" {
 
    # Bootstrap script can run on any instance of the cluster
    # So we just choose the first in this case
-   connection {
+   #connection {
      #host = element(aws_instance.cluster.*.public_ip, 0)
-   }
+   #}
 
    provisioner "remote-exec" {
      # Bootstrap script called with private_ip of each node in the cluster
