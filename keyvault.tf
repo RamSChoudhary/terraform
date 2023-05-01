@@ -44,16 +44,16 @@ resource "azurerm_key_vault_key" "test-key" {
     "wrapKey",
   ]
   
-  depends_on =[null_resource.kv-keys-add]
+ # depends_on =[null_resource.kv-keys-add]
 }
 
- resource "null_resource" "kv-keys-add" {
+ #resource "null_resource" "kv-keys-add" {
  #  # Changes to any instance of the cluster requires re-provisioning
-   triggers = {
+ #  triggers = {
     # key_name        = azurerm_key_vault_key.test-key.name
-    key_vault_name  = azurerm_key_vault.test-kv.id
-     always_run = "${timestamp()}"
-   }
+ #   key_vault_name  = azurerm_key_vault.test-kv.id
+ #    always_run = "${timestamp()}"
+ #  }
 
    # Bootstrap script can run on any instance of the cluster
    # So we just choose the first in this case
@@ -61,25 +61,25 @@ resource "azurerm_key_vault_key" "test-key" {
      #host = element(aws_instance.cluster.*.public_ip, 0)
    #}
 
-   provisioner "locaL-exec" {
+ #  provisioner "locaL-exec" {
      # Bootstrap script called with private_ip of each node in the cluster
-     command = <<EOT
-       set -eu 
-       agentIP=$(curl -s https://api.ipify.org/)
+ #    command = <<EOT
+ #      set -eu 
+ #      agentIP=$(curl -s https://api.ipify.org/)
    
-       echo $agentIP > "${path.module}/ip.txt"
-       echo "$PWD"
-       cat "${path.module}/ip.txt"
+ #      echo $agentIP > "${path.module}/ip.txt"
+ #      echo "$PWD"
+ #      cat "${path.module}/ip.txt"
    
-       az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+ #      az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
    
-       sleep 30
-       EOT
-   interpreter = ["bash", "-c" ]
+ #      sleep 30
+ #      EOT
+ #  interpreter = ["bash", "-c" ]
        
      
-   }
- }
+ #  }
+ #}
 
 data "local_file" "ip" {
   filename = "${path.module}/ip.txt"
