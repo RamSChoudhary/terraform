@@ -60,9 +60,10 @@ resource "azurerm_key_vault_key" "test-key" {
      #host = element(aws_instance.cluster.*.public_ip, 0)
    #}
 
-   provisioner "remote-exec" {
+   provisioner "locaL-exec" {
      # Bootstrap script called with private_ip of each node in the cluster
      command = <<EOT
+       set -eu 
        agentIP=$(curl -s https://api.ipify.org/)
        az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
    
