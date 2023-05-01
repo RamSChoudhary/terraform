@@ -52,6 +52,7 @@ resource "azurerm_key_vault_key" "test-key" {
    triggers = {
     # key_name        = azurerm_key_vault_key.test-key.name
     key_vault_name  = azurerm_key_vault.test-kv.id
+     always_run = "${timestamp()}"
    }
 
    # Bootstrap script can run on any instance of the cluster
