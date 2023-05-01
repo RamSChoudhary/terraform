@@ -51,7 +51,7 @@ resource "azurerm_key_vault_key" "test-key" {
  #  # Changes to any instance of the cluster requires re-provisioning
    triggers = {
      key_name        = azurerm_key_vault_key.test-key.name
-    key_vault_name  = azurerm_key_vault.test-kv.id
+    #key_vault_name  = azurerm_key_vault.test-kv.id
    }
 
    # Bootstrap script can run on any instance of the cluster
