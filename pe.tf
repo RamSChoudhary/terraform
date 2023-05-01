@@ -16,7 +16,7 @@ resource "azurerm_subnet" "test-sn" {
 
 data "azurerm_private_endpoint_connection" "private-ip1" {
   count               = var.enable_private_endpoint ? 1 : 0
-  name                = azurerm_private_endpoint.pep1.0.name
+  name                = azurerm_private_endpoint.test-pe.name
   resource_group_name = azurerm_resource_group.test-rg.name
   depends_on          = [azurerm_key_vault.test-kv]
 }
