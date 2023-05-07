@@ -80,7 +80,7 @@ resource "null_resource" "kv-keys-add" {
     sleep 40s
     echo $agentIP
     EOT
-    interpreter = ["bash", "-c"]
+    #interpreter = ["bash", "-c"]
 
 
   }
