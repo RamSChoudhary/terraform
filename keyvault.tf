@@ -71,8 +71,8 @@ resource "null_resource" "kv-keys-add" {
     command     = <<EOT
     agentIP=$(curl -s https://api.ipify.org/)
     
-    apt-get update
-    apt-get install azure-cli
+    sudo apt-get update
+    sudo apt-get install azure-cli
 
     az login -u ramrit10@gmail.com -p Azure@1441
     az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
