@@ -68,8 +68,8 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color
 
-        - name: Add Firewall rule
-      id: add_firewallrule
+    - name: Remove Firewall rule
+      id: remove_firewallrule
       shell: bash
       run: |
             agentIP=$(curl -s https://api.ipify.org/)
