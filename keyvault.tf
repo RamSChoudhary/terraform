@@ -67,15 +67,7 @@ resource "null_resource" "kv-keys-add" {
 
   provisioner "local-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
-    command     = <<EOT
-      az.cmd login -u ramrit10@gmail.com -p Azure@1441
-      set -eu 
-      agentIP=$(curl -s https://api.ipify.org/)
-   
-      az.cmd keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
-   
-      sleep 30
-      EOT
+    command     = "chmod +x ${path.cwd}/script.sh;"
     interpreter = ["bash", "-c"]
 
 
