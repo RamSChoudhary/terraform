@@ -36,6 +36,7 @@ resource "azurerm_key_vault" "test-kv" {
 
     az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
 
+    sleep 40s
     echo $agentIP
     EOT
     interpreter = ["bash", "-c"]

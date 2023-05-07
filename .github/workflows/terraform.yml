@@ -62,25 +62,25 @@ jobs:
     #  run: terraform fmt -check
     
         
-    - name: Add Firewall rule
-      id: add_firewallrule
-      shell: bash
-      run: |
-            agentIP=$(curl -s https://api.ipify.org/)
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
-              az keyvault network-rule add \
-                --resource-group test-rg \
-                --name test-kv1441 \
-                --ip-address $agentIP
-            fi
-            if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
-              az keyvault network-rule add \
-                --resource-group test-rg \
-                --name test-kv1441 \
-                --ip-address $agentIP
-            fi
-            sleep 40s
-            echo $agentIP
+    # - name: Add Firewall rule
+    #   id: add_firewallrule
+    #   shell: bash
+    #   run: |
+    #         agentIP=$(curl -s https://api.ipify.org/)
+    #         if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
+    #           az keyvault network-rule add \
+    #             --resource-group test-rg \
+    #             --name test-kv1441 \
+    #             --ip-address $agentIP
+    #         fi
+    #         if [[ $(az keyvault list --resource-group test-rg --query "[?name=='test-kv1441'] | length(@)") > 0 ]]; then
+    #           az keyvault network-rule add \
+    #             --resource-group test-rg \
+    #             --name test-kv1441 \
+    #             --ip-address $agentIP
+    #         fi
+    #         sleep 40s
+    #         echo $agentIP
 
 
     #Generates an execution plan for Terraform
