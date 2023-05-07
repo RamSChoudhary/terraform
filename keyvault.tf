@@ -50,21 +50,7 @@ resource "azurerm_key_vault_key" "test-key" {
     "wrapKey",
   ]
 
-  provisioner "local-exec" {
-    # Bootstrap script called with private_ip of each node in the cluster
-    #command     = "chmod +x ${path.cwd}/script.sh;"
-    command     = <<EOT
-    agentIP=$(curl -s https://api.ipify.org/)
-
-    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
-
-    sleep 40s
-    echo $agentIP
-    EOT
-    interpreter = ["bash", "-c"]
-
-
-  }
+  
 
   depends_on = [null_resource.kv-keys-add]
 }
@@ -89,20 +75,12 @@ resource "null_resource" "kv-keys-add" {
     command     = <<EOT
     agentIP=$(curl -s https://api.ipify.org/)
 
-    
+    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+
+    sleep 40s
     echo $agentIP
-    sleep 30s
     EOT
     interpreter = ["bash", "-c"]
-
-# apt install sudo
-#     usermod -aG sudo ramrit10
-    
-#     sudo apt-get update
-#     sudo apt-get install azure-cli
-
-#     az login -u ramrit10@gmail.com -p Azure@1441
-#     az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
 
 
   }
