@@ -68,16 +68,16 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=ip.plan -target='null_resource.kv-keys-add'
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        name: ip-plan
-        path: ip.plan
+    #- name: Upload Artifact
+    #  uses: actions/upload-artifact@v3.1.2
+    #  with:
+    #    name: ip-plan
+    #    path: ip.plan
 
-    - name: Download
-      uses: actions/download-artifact@v3
-      with: 
-        name: ip.plan
+    #- name: Download
+    #  uses: actions/download-artifact@v3
+    #  with: 
+    #    name: ip.plan
     # - name: Remove Firewall rule
     #   id: remove_firewallrule
     #   shell: bash
