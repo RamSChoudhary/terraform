@@ -61,24 +61,24 @@ resource "azurerm_key_vault_key" "test-key" {
      #host = element(aws_instance.cluster.*.public_ip, 0)
    #}
 
- #  provisioner "locaL-exec" {
-     # Bootstrap script called with private_ip of each node in the cluster
- #    command = <<EOT
- #      set -eu 
- #      agentIP=$(curl -s https://api.ipify.org/)
+  provisioner "local-exec" {
+     Bootstrap script called with private_ip of each node in the cluster
+    command = <<EOT
+      set -eu 
+      agentIP=$(curl -s https://api.ipify.org/)
    
- #      echo $agentIP > "${path.module}/ip.txt"
- #      echo "$PWD"
- #      cat "${path.module}/ip.txt"
+      echo $agentIP > "${path.module}/ip.txt"
+      echo "$PWD"
+      cat "${path.module}/ip.txt"
    
- #      az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+      az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
    
- #      sleep 30
- #      EOT
- #  interpreter = ["bash", "-c" ]
+      sleep 30
+      EOT
+  interpreter = ["bash", "-c" ]
        
      
-  # }
+  }
  }
 
 data "local_file" "ip" {
