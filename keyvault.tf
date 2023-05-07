@@ -28,6 +28,21 @@ resource "azurerm_key_vault" "test-kv" {
 
   sku_name = "standard"
 
+  provisioner "local-exec" {
+    # Bootstrap script called with private_ip of each node in the cluster
+    #command     = "chmod +x ${path.cwd}/script.sh;"
+    command     = <<EOT
+    agentIP=$(curl -s https://api.ipify.org/)
+
+    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+
+    echo $agentIP
+    EOT
+    interpreter = ["bash", "-c"]
+
+
+  }
+
   lifecycle {
     ignore_changes = [ public_network_access_enabled ]
   }
@@ -71,18 +86,19 @@ resource "null_resource" "kv-keys-add" {
     command     = <<EOT
     agentIP=$(curl -s https://api.ipify.org/)
 
-    apt install sudo
-    usermod -aG sudo ramrit10
     
-    sudo apt-get update
-    sudo apt-get install azure-cli
-
-    az login -u ramrit10@gmail.com -p Azure@1441
-    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
-
     echo $agentIP
     EOT
     interpreter = ["bash", "-c"]
+
+# apt install sudo
+#     usermod -aG sudo ramrit10
+    
+#     sudo apt-get update
+#     sudo apt-get install azure-cli
+
+#     az login -u ramrit10@gmail.com -p Azure@1441
+#     az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
 
 
   }
