@@ -34,7 +34,7 @@ resource "azurerm_private_endpoint" "test-pe" {
     is_manual_connection           = false
   }
 
-  
+
   lifecycle {
     ignore_changes = [
       private_dns_zone_group,
@@ -55,8 +55,8 @@ resource "azurerm_private_dns_a_record" "pe_kv" {
   records             = [data.azurerm_private_endpoint_connection.private-ip1.0.private_service_connection.0.private_ip_address]
 }
 
-output kv_private_ip {
-  value =   ["1.2.3.4"]
+output "kv_private_ip" {
+  value = ["1.2.3.4"]
 }
 
 #resource "null_resource" "dns_update" {
