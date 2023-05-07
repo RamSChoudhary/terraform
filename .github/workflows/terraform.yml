@@ -50,6 +50,8 @@ jobs:
       uses: azure/CLI@v1
       with:
         azcliversion: 2.30.0
+        inlineScript: |
+          az account show
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init & Plan
