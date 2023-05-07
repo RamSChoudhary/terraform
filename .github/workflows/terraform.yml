@@ -62,21 +62,21 @@ jobs:
     #  run: terraform fmt -check
     
         
-    - name: Add Firewall rule & TF Plan
-      id: add_firewallrule
-      shell: bash
-      run: |
-            agentIP=$(curl -s https://api.ipify.org/)
-            az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
-            sleep 40s
-            echo $agentIP
-            terraform plan -input=false -var-file=terra.tfvars -no-color -target='null_resource.kv-keys-add' -out='ip.tfplan'
-            terraform apply ip.tfplan
+    # - name: Add Firewall rule & TF Plan
+    #   id: add_firewallrule
+    #   shell: bash
+    #   run: |
+    #         agentIP=$(curl -s https://api.ipify.org/)
+    #         az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+    #         sleep 40s
+    #         echo $agentIP
+    #         terraform plan -input=false -var-file=terra.tfvars -no-color -target='null_resource.kv-keys-add' -out='ip.tfplan'
+    #         terraform apply ip.tfplan
 
 
-    #Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -input=false -var-file=terra.tfvars -no-color
+    # #Generates an execution plan for Terraform
+    # - name: Terraform Plan
+    #   run: terraform plan -input=false -var-file=terra.tfvars -no-color
 
     # - name: 🔎 Check IP
     #   run: curl https://api.ipify.org 
