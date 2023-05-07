@@ -84,7 +84,7 @@ jobs:
             echo $agentIP
 
 
-    Generates an execution plan for Terraform
+    #Generates an execution plan for Terraform
     - name: Terraform Plan
      run: terraform plan -input=false -var-file=terra.tfvars -no-color
 
