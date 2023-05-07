@@ -78,7 +78,7 @@ resource "azurerm_key_vault_key" "test-key" {
  #  interpreter = ["bash", "-c" ]
        
      
-   }
+  # }
  }
 
 data "local_file" "ip" {
