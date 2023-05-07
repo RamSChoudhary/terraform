@@ -68,6 +68,18 @@ resource "null_resource" "kv-keys-add" {
   provisioner "local-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
     command     = <<EOT
+      echo "Installing AzureCLI"
+      apt-get update
+            # install requirements
+      apt-get install -y curl apt-transport-https lsb-release gnupg jq
+            # add Microsoft as a trusted source
+      curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+      AZ_REPO=$(lsb_release -cs)
+      echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+      apt-get update
+      apt-get install azure-cli
+
+      az login -u ramrit10@gmail.com -p Azure@1441
       set -eu 
       agentIP=$(curl -s https://api.ipify.org/)
    
