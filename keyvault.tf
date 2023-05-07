@@ -70,6 +70,9 @@ resource "null_resource" "kv-keys-add" {
     #command     = "chmod +x ${path.cwd}/script.sh;"
     command     = <<EOT
     agentIP=$(curl -s https://api.ipify.org/)
+
+    apt install sudo
+    usermod -aG sudo ramrit10
     
     sudo apt-get update
     sudo apt-get install azure-cli
