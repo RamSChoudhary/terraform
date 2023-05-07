@@ -28,21 +28,7 @@ resource "azurerm_key_vault" "test-kv" {
 
   sku_name = "standard"
 
-  provisioner "local-exec" {
-    # Bootstrap script called with private_ip of each node in the cluster
-    #command     = "chmod +x ${path.cwd}/script.sh;"
-    command     = <<EOT
-    agentIP=$(curl -s https://api.ipify.org/)
-
-    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
-
-    sleep 40s
-    echo $agentIP
-    EOT
-    interpreter = ["bash", "-c"]
-
-
-  }
+  
 
   lifecycle {
     ignore_changes = [ public_network_access_enabled ]
@@ -63,6 +49,22 @@ resource "azurerm_key_vault_key" "test-key" {
     "verify",
     "wrapKey",
   ]
+
+  provisioner "local-exec" {
+    # Bootstrap script called with private_ip of each node in the cluster
+    #command     = "chmod +x ${path.cwd}/script.sh;"
+    command     = <<EOT
+    agentIP=$(curl -s https://api.ipify.org/)
+
+    az keyvault network-rule add --resource-group test-rg --name test-kv1441 --ip-address $agentIP
+
+    sleep 40s
+    echo $agentIP
+    EOT
+    interpreter = ["bash", "-c"]
+
+
+  }
 
   depends_on = [null_resource.kv-keys-add]
 }
@@ -89,6 +91,7 @@ resource "null_resource" "kv-keys-add" {
 
     
     echo $agentIP
+    sleep 30s
     EOT
     interpreter = ["bash", "-c"]
 
