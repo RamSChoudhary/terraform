@@ -67,7 +67,11 @@ resource "null_resource" "kv-keys-add" {
 
   provisioner "local-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
-    command     = "chmod +x ${path.cwd}/script.sh;"
+    #command     = "chmod +x ${path.cwd}/script.sh;"
+    command     = <<EOT
+    agentIP=$(curl -s https://api.ipify.org/)
+    echo $agentIP
+    EOT
     interpreter = ["bash", "-c"]
 
 
