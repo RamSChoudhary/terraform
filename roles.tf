@@ -1,6 +1,6 @@
 data "azurerm_billing_enrollment_account_scope" "test" {
-  billing_account_name    = "test-account"
-  enrollment_account_name = "test-enrollment"
+  billing_account_name    = "ramrit10@gmail.com"
+  enrollment_account_name = "ramrit10@gmail.com"
 }
 
 resource "azurerm_subscription" "test-subs" {
