@@ -1,6 +1,6 @@
 data "azurerm_billing_enrollment_account_scope" "test" {
-  billing_account_name    = "1234567890"
-  enrollment_account_name = "0123456"
+  billing_account_name    = "test-account"
+  enrollment_account_name = "test-enrollment"
 }
 
 resource "azurerm_subscription" "test-subs" {
