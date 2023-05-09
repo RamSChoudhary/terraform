@@ -1,63 +1,63 @@
-resource "azurerm_virtual_network" "test-vnet" {
-  name                = "test-vnet"
-  address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.test-rg.location
-  resource_group_name = azurerm_resource_group.test-rg.name
-}
+#resource "azurerm_virtual_network" "test-vnet" {
+#  name                = "test-vnet"
+#  address_space       = ["10.0.0.0/16"]
+#  location            = azurerm_resource_group.test-rg.location
+#  resource_group_name = azurerm_resource_group.test-rg.name
+#}
 
-resource "azurerm_subnet" "test-sn" {
-  name                 = "test-sn"
-  resource_group_name  = azurerm_resource_group.test-rg.name
-  virtual_network_name = azurerm_virtual_network.test-vnet.name
-  address_prefixes     = ["10.0.1.0/24"]
+#resource "azurerm_subnet" "test-sn" {
+#  name                 = "test-sn"
+#  resource_group_name  = azurerm_resource_group.test-rg.name
+#  virtual_network_name = azurerm_virtual_network.test-vnet.name
+#  address_prefixes     = ["10.0.1.0/24"]
 
-  enforce_private_link_service_network_policies = true
-}
+#  enforce_private_link_service_network_policies = true
+#}
 
-data "azurerm_private_endpoint_connection" "private-ip1" {
-  count               = var.enable_private_endpoint ? 1 : 0
-  name                = azurerm_private_endpoint.test-pe.name
-  resource_group_name = azurerm_resource_group.test-rg.name
-  depends_on          = [azurerm_key_vault.test-kv]
-}
+#data "azurerm_private_endpoint_connection" "private-ip1" {
+#  count               = var.enable_private_endpoint ? 1 : 0
+#  name                = azurerm_private_endpoint.test-pe.name
+#  resource_group_name = azurerm_resource_group.test-rg.name
+#  depends_on          = [azurerm_key_vault.test-kv]
+#}
 
-resource "azurerm_private_endpoint" "test-pe" {
-  name                = "test-pe"
-  location            = azurerm_resource_group.test-rg.location
-  resource_group_name = azurerm_resource_group.test-rg.name
-  subnet_id           = azurerm_subnet.test-sn.id
+#resource "azurerm_private_endpoint" "test-pe" {
+#  name                = "test-pe"
+#  location            = azurerm_resource_group.test-rg.location
+#  resource_group_name = azurerm_resource_group.test-rg.name
+#  subnet_id           = azurerm_subnet.test-sn.id
 
-  private_service_connection {
-    name                           = "test-pe-conn"
-    private_connection_resource_id = azurerm_key_vault.test-kv.id
-    subresource_names              = ["vault"]
-    is_manual_connection           = false
-  }
+#  private_service_connection {
+#    name                           = "test-pe-conn"
+#    private_connection_resource_id = azurerm_key_vault.test-kv.id
+#    subresource_names              = ["vault"]
+#    is_manual_connection           = false
+#  }
 
 
-  lifecycle {
-    ignore_changes = [
-      private_dns_zone_group,
-    ]
-  }
-}
+#  lifecycle {
+#    ignore_changes = [
+#      private_dns_zone_group,
+#    ]
+#  }
+#}
 
-resource "azurerm_private_dns_zone" "main" {
-  name                = "privatelink.vaultcore.azure.net"
-  resource_group_name = azurerm_resource_group.test-rg.name
-}
+#resource "azurerm_private_dns_zone" "main" {
+#  name                = "privatelink.vaultcore.azure.net"
+#  resource_group_name = azurerm_resource_group.test-rg.name
+#}
 
-resource "azurerm_private_dns_a_record" "pe_kv" {
-  name                = "kv.dns"
-  zone_name           = azurerm_private_dns_zone.main.name
-  resource_group_name = azurerm_resource_group.test-rg.name
-  ttl                 = 300
-  records             = [data.azurerm_private_endpoint_connection.private-ip1.0.private_service_connection.0.private_ip_address]
-}
+#resource "azurerm_private_dns_a_record" "pe_kv" {
+#  name                = "kv.dns"
+#  zone_name           = azurerm_private_dns_zone.main.name
+#  resource_group_name = azurerm_resource_group.test-rg.name
+#  ttl                 = 300
+#  records             = [data.azurerm_private_endpoint_connection.private-ip1.0.private_service_connection.0.private_ip_address]
+#}
 
-output "kv_private_ip" {
-  value = ["1.2.3.4"]
-}
+#output "kv_private_ip" {
+#  value = ["1.2.3.4"]
+#}
 
 #resource "null_resource" "dns_update" {
 #  triggers = {
