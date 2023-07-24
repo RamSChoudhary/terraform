@@ -30,7 +30,7 @@ jobs:
     
     - name: Reconfigure git to use HTTP authentication
       run: >
-        git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+        git config --global url."https://${{ secrets.GH_TOKEN }}@github.com".insteadOf ssh://git@github.com/
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
