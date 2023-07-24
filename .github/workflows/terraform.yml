@@ -28,7 +28,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     
-
+    - name: Reconfigure git to use HTTP authentication
+      run: >
+        git config --global url."https://github.com/".insteadOf ssh://git@github.com/
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -72,7 +74,7 @@ jobs:
       uses: terraform-compliance/github_action@main
       with:
         plan: plan.out.json
-        features: ssh://git@github.com/terraform-compliance/user-friendly-features.git
+        features: ssh://https://github.com/terraform-compliance/user-friendly-features.git
 
     #- name: Upload Artifact
     #  uses: actions/upload-artifact@v3.1.2
