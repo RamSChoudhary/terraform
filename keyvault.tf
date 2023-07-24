@@ -1,9 +1,9 @@
 #data "azurerm_client_config" "current" {}
 
-#resource "azurerm_resource_group" "test-rg" {
-#  name     = "test-rg"
-#  location = "eastus"
-#}
+resource "azurerm_resource_group" "test-rg" {
+  name     = "test-rg"
+  location = "eastus"
+}
 
 #resource "azurerm_key_vault" "test-kv" {
 #  name                          = "test-kv1441"
