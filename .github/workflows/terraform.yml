@@ -73,7 +73,7 @@ jobs:
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > plan.out.json
 
     - name: terraform-compliance
-      id: terraform-compliance from local
+      id: terraform-compliance-from-local
       run: |
           terraform-compliance -p plan.out.json -f /tests
 
