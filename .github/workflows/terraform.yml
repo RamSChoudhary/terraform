@@ -75,7 +75,7 @@ jobs:
     - name: terraform-compliance
       id: terraform-compliance-from-local
       run: |
-          terraform-compliance -p plan.out.json -f ${{ inputs.working_directory }}/tests
+          terraform-compliance -p plan.out.json -f ${{ github.workspace }}/tests
 
     #- name: Upload Artifact
     #  uses: actions/upload-artifact@v3.1.2
