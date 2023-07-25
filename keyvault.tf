@@ -52,7 +52,7 @@ resource "azurerm_key_vault_key" "test-key" {
 
   
 
-  depends_on = [null_resource.kv-keys-add]
+  #depends_on = [null_resource.kv-keys-add]
 }
 
 #resource "null_resource" "kv-keys-add" {
