@@ -71,7 +71,12 @@ jobs:
     # #Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > plan.out.json
-
+    
+    - name: Setup OPA
+      uses: open-policy-agent/setup-opa@v2
+      with:
+        version: latest
+    
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
     #  run: |
