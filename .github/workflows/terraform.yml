@@ -78,7 +78,7 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa test ${{ github.workspace }}/tests/*.rego -v 
+      run: opa eval ${{ github.workspace }}/tests/*.rego -i plan.out.json -f pretty
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
