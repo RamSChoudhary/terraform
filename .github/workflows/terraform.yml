@@ -70,7 +70,7 @@ jobs:
 
     # #Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > plan.out.json
+      run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > tfplan.json
     
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
@@ -78,7 +78,7 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa eval ${{ github.workspace }}/tests/*.rego -i plan.out.json -f pretty
+      run: opa eval ${{ github.workspace }}/tests/*.rego -i tfplan.json -f pretty
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
