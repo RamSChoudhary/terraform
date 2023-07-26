@@ -76,7 +76,10 @@ jobs:
       uses: open-policy-agent/setup-opa@v2
       with:
         version: latest
-    
+        
+    - name: Run OPA Tests
+      run: opa test ${{ github.workspace }}/tests/*.rego -v 
+      
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
     #  run: |
