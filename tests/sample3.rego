@@ -8,7 +8,7 @@ import input.resource_changes
 required_tags := {"environment","project","owner"}
 
 # Change maximums
-max_additions := 1
+max_additions := 0
 max_deletions := 10
 max_modifications := 10
 
