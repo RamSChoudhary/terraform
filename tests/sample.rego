@@ -9,7 +9,6 @@ blast_radius := 30
 default authz := false
 authz {
     score < blast_radius
-    not touches_iam
 }
 
 # Consider exactly these resource types in calculations
