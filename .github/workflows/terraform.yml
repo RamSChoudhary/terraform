@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa eval --fail-defined -d ${{ github.workspace }}/tests/*.rego -i tfplan.json -f pretty "data.example.violation[x]"
+      run: opa eval --fail-defined -d ${{ github.workspace }}/tests/sample.rego -i tfplan.json -f pretty "data.example.violation[x]"
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
