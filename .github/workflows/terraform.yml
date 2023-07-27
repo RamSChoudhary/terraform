@@ -73,7 +73,9 @@ jobs:
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > tfplan.json
       
     - name: Print JSON
-      run: echo tfplan.json
+      run: |
+        JSON=$(cat ./tfplan.json)
+        echo "${JSON//'%'/'%25'}"
       
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
