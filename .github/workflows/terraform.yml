@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa exec ---decision production/warn plan.out.json --bundle ${{ github.workspace }}/tests/ 
+      run: opa exec --bundle ${{ github.workspace }}/tests/ --decision production/warn plan.out.json 
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
