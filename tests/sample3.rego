@@ -39,7 +39,7 @@ warn[msg] {
 }
 
 # Check to see if there are Virtual networks missing tags
-vnets := plan_functions.get_resources_by_type("azurerm_virtual_network", resource_changes)
+kv := plan_functions.get_resources_by_type("azurerm_key_vault", resource_changes)
 
 tags_contain_required(resource_checks) = resources {
     resources := [ resource | 
@@ -49,7 +49,7 @@ tags_contain_required(resource_checks) = resources {
 }
 
 deny[msg] {
-    resources := tags_contain_required(vnets)
+    resources := tags_contain_required(kv)
     resources != []
     msg := sprintf("The following resources are missing required tags: %s", [resources[_].address])
 }
