@@ -70,7 +70,7 @@ jobs:
 
     # #Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.out && terraform show -json plan.out > tfplan.json
+      run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=plan.binary && terraform show -json plan.binary > tfplan.json
       
     - name: Print JSON
       run: |
@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa exec --bundle ${{ github.workspace }}/tests --decision production/warn ${{ github.workspace }}/tfplan.json 
+      run: opa exec --bundle ${{ github.workspace }}/tests --decision production/warn tfplan.json 
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
