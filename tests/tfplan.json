@@ -1,0 +1,1181 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.5.4",
+  "variables": {
+    "enable_private_endpoint": {
+      "value": true
+    },
+    "global_settings": {
+      "value": {
+        "default_region": "region1",
+        "regions": {
+          "region1": "eastus2"
+        }
+      }
+    },
+    "provider_azurerm_features_keyvault": {
+      "value": {
+        "purge_soft_delete_on_destroy": true
+      }
+    },
+    "resource_groups": {
+      "value": {
+        "vm_region1": {
+          "name": "example-virtual-machine-rg1"
+        }
+      }
+    }
+  },
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "azurerm_key_vault.test-kv",
+          "mode": "managed",
+          "type": "azurerm_key_vault",
+          "name": "test-kv",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 2,
+          "values": {
+            "access_policy": [
+              {
+                "application_id": null,
+                "certificate_permissions": [
+                  "Backup",
+                  "Create",
+                  "Delete",
+                  "DeleteIssuers",
+                  "Get",
+                  "GetIssuers",
+                  "Import",
+                  "List",
+                  "ListIssuers",
+                  "ManageContacts",
+                  "ManageIssuers",
+                  "Purge",
+                  "Recover",
+                  "Restore",
+                  "SetIssuers",
+                  "Update"
+                ],
+                "key_permissions": [
+                  "Backup",
+                  "Create",
+                  "Decrypt",
+                  "Delete",
+                  "Encrypt",
+                  "Get",
+                  "Import",
+                  "List",
+                  "Purge",
+                  "Recover",
+                  "Restore",
+                  "Sign",
+                  "UnwrapKey",
+                  "Update",
+                  "Verify",
+                  "WrapKey",
+                  "Release",
+                  "Rotate",
+                  "GetRotationPolicy",
+                  "SetRotationPolicy"
+                ],
+                "object_id": "93b4c260-286d-415e-98e3-72b49da892af",
+                "secret_permissions": [
+                  "Backup",
+                  "Delete",
+                  "Get",
+                  "List",
+                  "Purge",
+                  "Recover",
+                  "Restore",
+                  "Set"
+                ],
+                "storage_permissions": [
+                  "Backup",
+                  "Delete",
+                  "DeleteSAS",
+                  "Get",
+                  "GetSAS",
+                  "List",
+                  "ListSAS",
+                  "Purge",
+                  "Recover",
+                  "RegenerateKey",
+                  "Restore",
+                  "Set",
+                  "SetSAS",
+                  "Update"
+                ],
+                "tenant_id": "***"
+              }
+            ],
+            "contact": [
+              
+            ],
+            "enable_rbac_authorization": null,
+            "enabled_for_deployment": null,
+            "enabled_for_disk_encryption": true,
+            "enabled_for_template_deployment": null,
+            "location": "eastus",
+            "name": "test-kv1441",
+            "public_network_access_enabled": false,
+            "purge_protection_enabled": false,
+            "resource_group_name": "test-rg",
+            "sku_name": "standard",
+            "soft_delete_retention_days": 7,
+            "tags": null,
+            "tenant_id": "***",
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "access_policy": [
+              {
+                "certificate_permissions": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "key_permissions": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "secret_permissions": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "storage_permissions": [
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ]
+              }
+            ],
+            "contact": [
+              
+            ],
+            "network_acls": [
+              
+            ]
+          }
+        },
+        {
+          "address": "azurerm_key_vault_key.test-key",
+          "mode": "managed",
+          "type": "azurerm_key_vault_key",
+          "name": "test-key",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "expiration_date": null,
+            "key_opts": [
+              "decrypt",
+              "encrypt",
+              "sign",
+              "unwrapKey",
+              "verify",
+              "wrapKey"
+            ],
+            "key_size": 2048,
+            "key_type": "RSA",
+            "name": "test-key",
+            "not_before_date": null,
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "key_opts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "rotation_policy": [
+              
+            ]
+          }
+        },
+        {
+          "address": "azurerm_resource_group.test-rg",
+          "mode": "managed",
+          "type": "azurerm_resource_group",
+          "name": "test-rg",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "location": "eastus",
+            "name": "test-rg",
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_values": {
+            
+          }
+        },
+        {
+          "address": "azurerm_storage_account.example",
+          "mode": "managed",
+          "type": "azurerm_storage_account",
+          "name": "example",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 3,
+          "values": {
+            "account_kind": "StorageV2",
+            "account_replication_type": "GRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": true,
+            "allowed_copy_scope": null,
+            "azure_files_authentication": [
+              
+            ],
+            "cross_tenant_replication_enabled": true,
+            "custom_domain": [
+              
+            ],
+            "customer_managed_key": [
+              
+            ],
+            "default_to_oauth_authentication": false,
+            "edge_zone": null,
+            "enable_https_traffic_only": true,
+            "identity": [
+              
+            ],
+            "immutability_policy": [
+              
+            ],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "location": "eastus",
+            "min_tls_version": "TLS1_2",
+            "name": "storageaccountname14411",
+            "nfsv3_enabled": false,
+            "public_network_access_enabled": true,
+            "queue_encryption_key_type": "Service",
+            "resource_group_name": "test-rg",
+            "sas_policy": [
+              
+            ],
+            "sftp_enabled": false,
+            "shared_access_key_enabled": true,
+            "static_website": [
+              
+            ],
+            "table_encryption_key_type": "Service",
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "azure_files_authentication": [
+              
+            ],
+            "blob_properties": [
+              
+            ],
+            "custom_domain": [
+              
+            ],
+            "customer_managed_key": [
+              
+            ],
+            "identity": [
+              
+            ],
+            "immutability_policy": [
+              
+            ],
+            "network_rules": [
+              
+            ],
+            "queue_properties": [
+              
+            ],
+            "routing": [
+              
+            ],
+            "sas_policy": [
+              
+            ],
+            "share_properties": [
+              
+            ],
+            "static_website": [
+              
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "azurerm_key_vault.test-kv",
+      "mode": "managed",
+      "type": "azurerm_key_vault",
+      "name": "test-kv",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access_policy": [
+            {
+              "application_id": null,
+              "certificate_permissions": [
+                "Backup",
+                "Create",
+                "Delete",
+                "DeleteIssuers",
+                "Get",
+                "GetIssuers",
+                "Import",
+                "List",
+                "ListIssuers",
+                "ManageContacts",
+                "ManageIssuers",
+                "Purge",
+                "Recover",
+                "Restore",
+                "SetIssuers",
+                "Update"
+              ],
+              "key_permissions": [
+                "Backup",
+                "Create",
+                "Decrypt",
+                "Delete",
+                "Encrypt",
+                "Get",
+                "Import",
+                "List",
+                "Purge",
+                "Recover",
+                "Restore",
+                "Sign",
+                "UnwrapKey",
+                "Update",
+                "Verify",
+                "WrapKey",
+                "Release",
+                "Rotate",
+                "GetRotationPolicy",
+                "SetRotationPolicy"
+              ],
+              "object_id": "93b4c260-286d-415e-98e3-72b49da892af",
+              "secret_permissions": [
+                "Backup",
+                "Delete",
+                "Get",
+                "List",
+                "Purge",
+                "Recover",
+                "Restore",
+                "Set"
+              ],
+              "storage_permissions": [
+                "Backup",
+                "Delete",
+                "DeleteSAS",
+                "Get",
+                "GetSAS",
+                "List",
+                "ListSAS",
+                "Purge",
+                "Recover",
+                "RegenerateKey",
+                "Restore",
+                "Set",
+                "SetSAS",
+                "Update"
+              ],
+              "tenant_id": "***"
+            }
+          ],
+          "contact": [
+            
+          ],
+          "enable_rbac_authorization": null,
+          "enabled_for_deployment": null,
+          "enabled_for_disk_encryption": true,
+          "enabled_for_template_deployment": null,
+          "location": "eastus",
+          "name": "test-kv1441",
+          "public_network_access_enabled": false,
+          "purge_protection_enabled": false,
+          "resource_group_name": "test-rg",
+          "sku_name": "standard",
+          "soft_delete_retention_days": 7,
+          "tags": null,
+          "tenant_id": "***",
+          "timeouts": null
+        },
+        "after_unknown": {
+          "access_policy": [
+            {
+              "certificate_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "storage_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "contact": [
+            
+          ],
+          "id": true,
+          "network_acls": true,
+          "vault_uri": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "access_policy": [
+            {
+              "certificate_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "key_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "secret_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "storage_permissions": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            }
+          ],
+          "contact": [
+            
+          ],
+          "network_acls": [
+            
+          ]
+        }
+      }
+    },
+    {
+      "address": "azurerm_key_vault_key.test-key",
+      "mode": "managed",
+      "type": "azurerm_key_vault_key",
+      "name": "test-key",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "expiration_date": null,
+          "key_opts": [
+            "decrypt",
+            "encrypt",
+            "sign",
+            "unwrapKey",
+            "verify",
+            "wrapKey"
+          ],
+          "key_size": 2048,
+          "key_type": "RSA",
+          "name": "test-key",
+          "not_before_date": null,
+          "tags": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "curve": true,
+          "e": true,
+          "id": true,
+          "key_opts": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "key_vault_id": true,
+          "n": true,
+          "public_key_openssh": true,
+          "public_key_pem": true,
+          "resource_id": true,
+          "resource_versionless_id": true,
+          "rotation_policy": true,
+          "version": true,
+          "versionless_id": true,
+          "x": true,
+          "y": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "key_opts": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "rotation_policy": [
+            
+          ]
+        }
+      }
+    },
+    {
+      "address": "azurerm_resource_group.test-rg",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "test-rg",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "location": "eastus",
+          "name": "test-rg",
+          "tags": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_account.example",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "example",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "account_kind": "StorageV2",
+          "account_replication_type": "GRS",
+          "account_tier": "Standard",
+          "allow_nested_items_to_be_public": true,
+          "allowed_copy_scope": null,
+          "azure_files_authentication": [
+            
+          ],
+          "cross_tenant_replication_enabled": true,
+          "custom_domain": [
+            
+          ],
+          "customer_managed_key": [
+            
+          ],
+          "default_to_oauth_authentication": false,
+          "edge_zone": null,
+          "enable_https_traffic_only": true,
+          "identity": [
+            
+          ],
+          "immutability_policy": [
+            
+          ],
+          "infrastructure_encryption_enabled": false,
+          "is_hns_enabled": false,
+          "location": "eastus",
+          "min_tls_version": "TLS1_2",
+          "name": "storageaccountname14411",
+          "nfsv3_enabled": false,
+          "public_network_access_enabled": true,
+          "queue_encryption_key_type": "Service",
+          "resource_group_name": "test-rg",
+          "sas_policy": [
+            
+          ],
+          "sftp_enabled": false,
+          "shared_access_key_enabled": true,
+          "static_website": [
+            
+          ],
+          "table_encryption_key_type": "Service",
+          "tags": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "access_tier": true,
+          "azure_files_authentication": [
+            
+          ],
+          "blob_properties": true,
+          "custom_domain": [
+            
+          ],
+          "customer_managed_key": [
+            
+          ],
+          "id": true,
+          "identity": [
+            
+          ],
+          "immutability_policy": [
+            
+          ],
+          "large_file_share_enabled": true,
+          "network_rules": true,
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_blob_endpoint": true,
+          "primary_blob_host": true,
+          "primary_connection_string": true,
+          "primary_dfs_endpoint": true,
+          "primary_dfs_host": true,
+          "primary_file_endpoint": true,
+          "primary_file_host": true,
+          "primary_location": true,
+          "primary_queue_endpoint": true,
+          "primary_queue_host": true,
+          "primary_table_endpoint": true,
+          "primary_table_host": true,
+          "primary_web_endpoint": true,
+          "primary_web_host": true,
+          "queue_properties": true,
+          "routing": true,
+          "sas_policy": [
+            
+          ],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_blob_endpoint": true,
+          "secondary_blob_host": true,
+          "secondary_connection_string": true,
+          "secondary_dfs_endpoint": true,
+          "secondary_dfs_host": true,
+          "secondary_file_endpoint": true,
+          "secondary_file_host": true,
+          "secondary_location": true,
+          "secondary_queue_endpoint": true,
+          "secondary_queue_host": true,
+          "secondary_table_endpoint": true,
+          "secondary_table_host": true,
+          "secondary_web_endpoint": true,
+          "secondary_web_host": true,
+          "share_properties": true,
+          "static_website": [
+            
+          ]
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "azure_files_authentication": [
+            
+          ],
+          "blob_properties": [
+            
+          ],
+          "custom_domain": [
+            
+          ],
+          "customer_managed_key": [
+            
+          ],
+          "identity": [
+            
+          ],
+          "immutability_policy": [
+            
+          ],
+          "network_rules": [
+            
+          ],
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_connection_string": true,
+          "queue_properties": [
+            
+          ],
+          "routing": [
+            
+          ],
+          "sas_policy": [
+            
+          ],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_connection_string": true,
+          "share_properties": [
+            
+          ],
+          "static_website": [
+            
+          ]
+        }
+      }
+    }
+  ],
+  "prior_state": {
+    "format_version": "1.0",
+    "terraform_version": "1.5.4",
+    "values": {
+      "root_module": {
+        "resources": [
+          {
+            "address": "data.azurerm_billing_enrollment_account_scope.test",
+            "mode": "data",
+            "type": "azurerm_billing_enrollment_account_scope",
+            "name": "test",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "billing_account_name": "ramrit10@gmail.com",
+              "enrollment_account_name": "pay-as-you-go",
+              "id": "/providers/Microsoft.Billing/billingAccounts/ramrit10@gmail.com/enrollmentAccounts/pay-as-you-go",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              
+            }
+          },
+          {
+            "address": "data.azurerm_client_config.current",
+            "mode": "data",
+            "type": "azurerm_client_config",
+            "name": "current",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "client_id": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+              "id": "Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9OTNiNGMyNjAtMjg2ZC00MTVlLTk4ZTMtNzJiNDlkYTg5MmFmO3N1YnNjcmlwdGlvbklkPWEyMGM2NjEwLTg4MDItNGRlNy05MWZmLWRjZDk1YmNiYjE2ZDt0ZW5hbnRJZD02***",
+              "object_id": "93b4c260-286d-415e-98e3-72b49da892af",
+              "subscription_id": "***",
+              "tenant_id": "***",
+              "timeouts": null
+            },
+            "sensitive_values": {
+              
+            }
+          }
+        ]
+      }
+    }
+  },
+  "configuration": {
+    "provider_config": {
+      "azurerm": {
+        "name": "azurerm",
+        "full_name": "registry.terraform.io/hashicorp/azurerm",
+        "version_constraint": "3.47.0",
+        "expressions": {
+          "features": [
+            {
+              "key_vault": [
+                {
+                  "purge_soft_delete_on_destroy": {
+                    "references": [
+                      "var.provider_azurerm_features_keyvault.purge_soft_delete_on_destroy",
+                      "var.provider_azurerm_features_keyvault"
+                    ]
+                  },
+                  "recover_soft_deleted_key_vaults": {
+                    "constant_value": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "null": {
+        "name": "null",
+        "full_name": "registry.terraform.io/hashicorp/null",
+        "version_constraint": "3.2.1"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "azurerm_key_vault.test-kv",
+          "mode": "managed",
+          "type": "azurerm_key_vault",
+          "name": "test-kv",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "access_policy": {
+              "references": [
+                "data.azurerm_client_config.current.object_id",
+                "data.azurerm_client_config.current",
+                "data.azurerm_client_config.current.tenant_id",
+                "data.azurerm_client_config.current"
+              ]
+            },
+            "enabled_for_disk_encryption": {
+              "constant_value": true
+            },
+            "location": {
+              "references": [
+                "azurerm_resource_group.test-rg.location",
+                "azurerm_resource_group.test-rg"
+              ]
+            },
+            "name": {
+              "constant_value": "test-kv1441"
+            },
+            "public_network_access_enabled": {
+              "constant_value": false
+            },
+            "purge_protection_enabled": {
+              "constant_value": false
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.test-rg.name",
+                "azurerm_resource_group.test-rg"
+              ]
+            },
+            "sku_name": {
+              "constant_value": "standard"
+            },
+            "soft_delete_retention_days": {
+              "constant_value": 7
+            },
+            "tenant_id": {
+              "references": [
+                "data.azurerm_client_config.current.tenant_id",
+                "data.azurerm_client_config.current"
+              ]
+            }
+          },
+          "schema_version": 2
+        },
+        {
+          "address": "azurerm_key_vault_key.test-key",
+          "mode": "managed",
+          "type": "azurerm_key_vault_key",
+          "name": "test-key",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "key_opts": {
+              "constant_value": [
+                "decrypt",
+                "encrypt",
+                "sign",
+                "unwrapKey",
+                "verify",
+                "wrapKey"
+              ]
+            },
+            "key_size": {
+              "constant_value": 2048
+            },
+            "key_type": {
+              "constant_value": "RSA"
+            },
+            "key_vault_id": {
+              "references": [
+                "azurerm_key_vault.test-kv.id",
+                "azurerm_key_vault.test-kv"
+              ]
+            },
+            "name": {
+              "constant_value": "test-key"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "azurerm_resource_group.test-rg",
+          "mode": "managed",
+          "type": "azurerm_resource_group",
+          "name": "test-rg",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "location": {
+              "constant_value": "eastus"
+            },
+            "name": {
+              "constant_value": "test-rg"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "azurerm_storage_account.example",
+          "mode": "managed",
+          "type": "azurerm_storage_account",
+          "name": "example",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "account_replication_type": {
+              "constant_value": "GRS"
+            },
+            "account_tier": {
+              "constant_value": "Standard"
+            },
+            "location": {
+              "references": [
+                "azurerm_resource_group.test-rg.location",
+                "azurerm_resource_group.test-rg"
+              ]
+            },
+            "name": {
+              "constant_value": "storageaccountname14411"
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.test-rg.name",
+                "azurerm_resource_group.test-rg"
+              ]
+            }
+          },
+          "schema_version": 3
+        },
+        {
+          "address": "data.azurerm_billing_enrollment_account_scope.test",
+          "mode": "data",
+          "type": "azurerm_billing_enrollment_account_scope",
+          "name": "test",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "billing_account_name": {
+              "constant_value": "ramrit10@gmail.com"
+            },
+            "enrollment_account_name": {
+              "constant_value": "pay-as-you-go"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "data.azurerm_client_config.current",
+          "mode": "data",
+          "type": "azurerm_client_config",
+          "name": "current",
+          "provider_config_key": "azurerm",
+          "schema_version": 0
+        }
+      ],
+      "variables": {
+        "enable_private_endpoint": {
+          
+        },
+        "global_settings": {
+          "default": {
+            
+          }
+        },
+        "provider_azurerm_features_keyvault": {
+          "default": {
+            "purge_soft_delete_on_destroy": true
+          }
+        },
+        "resource_groups": {
+          "default": {
+            
+          }
+        }
+      }
+    }
+  },
+  "relevant_attributes": [
+    {
+      "resource": "azurerm_key_vault.test-kv",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "azurerm_resource_group.test-rg",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "data.azurerm_client_config.current",
+      "attribute": [
+        "tenant_id"
+      ]
+    },
+    {
+      "resource": "azurerm_resource_group.test-rg",
+      "attribute": [
+        "location"
+      ]
+    },
+    {
+      "resource": "data.azurerm_client_config.current",
+      "attribute": [
+        "object_id"
+      ]
+    }
+  ],
+  "timestamp": "2023-07-27T07:31:06Z"
+}
