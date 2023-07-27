@@ -83,12 +83,12 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa eval -d ${{ github.workspace }}/tests/sample.rego -i tfplan.json 
+      run: opa exec -d ${{ github.workspace }}/tests/sample.rego -i tfplan.json 
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
     #  run: |
-    #      terraform-compliance -p plan.out.json -f ${{ github.workspace }}/tests
+    #      terraform-compliance --decision production/warn plan.out.json --bundle ${{ github.workspace }}/tests/ 
 
     #- name: Upload Artifact
     #  uses: actions/upload-artifact@v3.1.2
