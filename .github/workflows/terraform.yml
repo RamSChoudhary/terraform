@@ -83,7 +83,8 @@ jobs:
         version: latest
         
     - name: Run OPA Tests
-      run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
+      #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
+      run: opa eval -d tfplan.json  --bundle ${{ github.workspace }}/tests3  
       
     #- name: terraform-compliance
     #  id: terraform-compliance-from-local
