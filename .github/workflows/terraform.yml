@@ -85,7 +85,7 @@ jobs:
     - name: Run OPA Tests
       #run: opa version
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
-      run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tfplan.json  
+      run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
     
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
