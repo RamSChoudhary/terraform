@@ -92,7 +92,7 @@ jobs:
       
       run: |
        #terraform show -json tfplan.plan > tfplan.json
-       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ ./tfplan.json  
+       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ tfplan.json  
     
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
