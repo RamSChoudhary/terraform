@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Directory commands
-      run: ls
+      run: cat tfplan.json
       
     - name: Run OPA Tests
       #run: opa version
