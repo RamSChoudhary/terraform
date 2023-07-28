@@ -82,6 +82,9 @@ jobs:
       with:
         version: latest
         
+    - name: Directory commands
+      run: pwd
+      
     - name: Run OPA Tests
       #run: opa version
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
