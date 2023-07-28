@@ -1,5 +1,5 @@
 package terraform.tag_validation
-import future.keywords
+#import future.keywords
 
 # Tag checking functions
 # Read all tags from a resource
