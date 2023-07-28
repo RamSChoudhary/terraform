@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Directory commands
-      run: cat tfplan.json
+      run: cat /home/runner/work/terraform/terraform/tfplan.json
       
     - name: Run OPA Tests
       #run: opa version
@@ -92,7 +92,7 @@ jobs:
       
       run: |
        #terraform show -json tfplan.plan > tfplan.json
-       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tfplan.json
+       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ /home/runner/work/terraform/terraform/tfplan.json
     
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
