@@ -83,7 +83,7 @@ jobs:
         version: latest
         
     - name: Directory commands
-      run: pwd
+      run: ls
       
     - name: Run OPA Tests
       #run: opa version
