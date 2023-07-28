@@ -72,10 +72,10 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=tfplan.plan && terraform show -json tfplan.plan > tfplan.json
       
-    #- name: Print JSON
-    #  run: |
-    #    JSON=$(cat ./tfplan.json)
-    #    echo "${JSON//'%'/'%25'}"
+    - name: Print JSON
+      run: |
+        JSON=$(cat ./tfplan.json)
+        echo "${JSON//'%'/'%25'}"
       
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
@@ -88,8 +88,8 @@ jobs:
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
       
       run: |
-       terraform show -json tfplan.plan > tfplan.json
-       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ tfplan.json  
+       #terraform show -json tfplan.plan > tfplan.json
+       opa exec --decision production/warn --bundle ${{ github.workspace }}/tests/ ./tfplan.json  
     
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
