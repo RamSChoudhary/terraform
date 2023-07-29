@@ -91,6 +91,11 @@ jobs:
       
     - name: Directory 3 commands
       run: ls -l tfplan.json
+      
+    - name: Print JSON 3
+      run: |
+        JSON=$(cat tfplan.json)
+        echo "${JSON//'%'/'%25'}"      
        
     - name: Run OPA Tests
       #run: opa version
