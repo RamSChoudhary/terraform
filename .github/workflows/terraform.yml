@@ -83,7 +83,9 @@ jobs:
         version: latest
         
     - name: Directory commands
-      run: chmod 777 tfplan.json #cat /home/runner/work/terraform/terraform/tfplan.json
+      run: | 
+       ls -l
+       chmod 777 tfplan.json #cat /home/runner/work/terraform/terraform/tfplan.json
       
     - name: Run OPA Tests
       #run: opa version
