@@ -82,11 +82,16 @@ jobs:
       with:
         version: latest
         
-    - name: Directory commands
+    - name: Directory 1 commands
       run: | 
-       ls -l
-       chmod 777 tfplan.json #cat /home/runner/work/terraform/terraform/tfplan.json
+       ls -l tfplan.json 
+    
+    - name: Directory 2 commands
+      run: chmod 777 tfplan.json
       
+    - name: Directory 3 commands
+      run: ls -l tfplan.json
+       
     - name: Run OPA Tests
       #run: opa version
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
