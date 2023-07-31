@@ -72,30 +72,30 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=tfplan.plan && terraform show -json tfplan.plan | grep '^{.*}$' > tfplan.json
       
-    - name: Print JSON
-      run: |
-        JSON=$(cat ./tfplan.json)
-        echo "${JSON//'%'/'%25'}"
+    #- name: Print JSON
+    #  run: |
+    #    JSON=$(cat ./tfplan.json)
+    #    echo "${JSON//'%'/'%25'}"
       
     - name: Setup OPA
       uses: open-policy-agent/setup-opa@v2
       with:
         version: latest
         
-    - name: Directory 1 commands
-      run: | 
-       ls -l tfplan.json 
+    #- name: Directory 1 commands
+    #  run: | 
+    #   ls -l tfplan.json 
     
-    - name: Directory 2 commands
-      run: chmod 777 tfplan.json
+    #- name: Directory 2 commands
+    #  run: chmod 777 tfplan.json
       
-    - name: Directory 3 commands
-      run: ls -l tfplan.json
+    #- name: Directory 3 commands
+    #  run: ls -l tfplan.json
       
-    - name: Print JSON 3
-      run: |
-        JSON=$(cat tfplan.json)
-        echo "${JSON//'%'/'%25'}"      
+    #- name: Print JSON 3
+    #  run: |
+    #    JSON=$(cat tfplan.json)
+    #    echo "${JSON//'%'/'%25'}"      
        
     - name: Run OPA Tests
       #run: opa version
@@ -103,6 +103,12 @@ jobs:
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
       
       run: opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json"
+     
+    - name: OPA Policy Result Check
+      if: result.result != []
+      run: |
+       echo "OPA Policies Failing"
+       exit 1
     
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
