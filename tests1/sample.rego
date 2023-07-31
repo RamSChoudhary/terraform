@@ -19,11 +19,15 @@ tags_contain_required(resource_checks) = resources {
     ]
 }
 
-deny[msg] {
-    resources := tags_contain_required(kv)
-    resources != []
-    msg := sprintf("The following resources are missing required tags: %s", [resources[_].address])
+deny[msg]{
+  msg := "No Deployments" 
 }
+
+#deny[msg] {
+#    resources := tags_contain_required(kv)
+#    resources != []
+#    msg := sprintf("The following resources are missing required tags: %s", [resources[_].address])
+#}
 
 # Tag checking functions
 # Read all tags from a resource
