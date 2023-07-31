@@ -114,7 +114,10 @@ jobs:
       run: |
        JSON=$(cat result.json)
        echo "${JSON//'%'/'%25'}" 
-       echo $(jq -r '.result')
+       for tag in ${{ fromJSON(result.json).tags[0] }}
+        do
+          echo tag
+        done
        echo "OPA Policies Failing"
        exit 1
     
