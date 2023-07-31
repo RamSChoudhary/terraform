@@ -104,6 +104,8 @@ jobs:
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
       
       run: opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json"
+      if: result.result != []
+       echo "fail"
      
     - name: OPA Policy Result Check
       #if: result.result != []
