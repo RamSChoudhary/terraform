@@ -112,7 +112,8 @@ jobs:
     - name: OPA Policy Result Check
       #if: result.result != []
       run: |
-       echo result.json
+       JSON=$(cat result.json)
+       echo "${JSON//'%'/'%25'}" 
        echo "OPA Policies Failing"
        exit 1
     
