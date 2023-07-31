@@ -105,7 +105,7 @@ jobs:
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
       #run: opa eval --data ${{ github.workspace }}/tests1/ -i tfplan.json data.terraform.tag_validation/deny
-      run: opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json" --format json >> "$GITHUB_OUTPUT"
+      run: opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json" --format json > result.json
       #run: opa bench --bundle ${{ github.workspace }}/tests/ -i tfplan.json 'production/deny'
       
      
