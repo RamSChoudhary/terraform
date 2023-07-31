@@ -114,7 +114,7 @@ jobs:
       run: |
        JSON=$(cat result.json)
        echo "${JSON//'%'/'%25'}" 
-       echo '${{ fromJson(JSON).parameters.result.value }}'
+       echo '${{ fromJson(${JSON//'%'/'%25'}).parameters.result.value }}'
        echo "OPA Policies Failing"
        exit 1
     
