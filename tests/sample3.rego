@@ -23,7 +23,7 @@ resources_removed := plan_functions.get_resources_by_action("delete", resource_c
 resource_changed := plan_functions.get_resources_by_action("update", resource_changes)
 
 # Check to see if there are too many changes
-warn[msg] {
+deny[msg] {
     count(resources_added) > max_additions
     msg := sprintf("Too many resources added. Only %d resources can be added at a time.", [max_additions])
 }
