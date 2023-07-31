@@ -98,6 +98,7 @@ jobs:
     #    echo "${JSON//'%'/'%25'}"      
        
     - name: Run OPA Tests
+      id: OPA_Result
       #run: opa version
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
@@ -105,8 +106,9 @@ jobs:
       run: opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json"
      
     - name: OPA Policy Result Check
-      if: result.result != []
+      #if: result.result != []
       run: |
+       echo "${{ steps.OPA_Result.outputs }}"
        echo "OPA Policies Failing"
        exit 1
     
