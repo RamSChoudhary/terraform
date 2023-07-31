@@ -1,5 +1,6 @@
 package terraform.tag_validation
 import future.keywords
+import input.resource_changes
 
 # Required tags for all resources
 required_tags := {"environment","project","owner"}
