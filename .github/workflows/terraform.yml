@@ -114,7 +114,7 @@ jobs:
       run: |
        JSON=$(cat result.json)
        echo "${JSON//'%'/'%25'}" 
-       for tag in ${{ fromJSON(cat result.json).result[0] }}
+       for tag in ${{ fromJSON(result.json).result[0] }}
         do
           echo tag
         done
