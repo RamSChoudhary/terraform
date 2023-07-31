@@ -28,7 +28,11 @@ resource "azurerm_key_vault" "test-kv" {
 
   sku_name = "standard"
 
-  
+  tags  {
+    environment = "test"
+    project= "test"
+     owner = "test"
+}
 
   lifecycle {
     ignore_changes = [ public_network_access_enabled ]
