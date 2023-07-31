@@ -103,7 +103,7 @@ jobs:
       #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
       #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
       
-      run: $output=opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json"
+      run: $output=(opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json")
        Write-Output "::set-output name=OPA::$output"
      
     - name: OPA Policy Result Check
