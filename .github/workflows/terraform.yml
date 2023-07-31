@@ -112,7 +112,7 @@ jobs:
     - name: OPA Policy Result Check
       #if: result.result != []
       run: |
-       echo "${{ steps.OPA_Result.outputs.out }}"
+       echo result.json
        echo "OPA Policies Failing"
        exit 1
     
