@@ -112,9 +112,9 @@ jobs:
     - name: OPA Policy Result Check
       id: opa_result_parse
       run: |
-       JSON=$(cat result.json)
-       echo "${jq '.result[0].result' result.json}"
-       echo "${JSON//'%'/'%25'}"
+       tesst=$(jq '.result[0].result' result.json)
+       echo "${tesst}"
+       #echo "${JSON//'%'/'%25'}"
        #echo "::set-output name=opa_result::$JSON"
        #exit 1
        
