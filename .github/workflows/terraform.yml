@@ -111,14 +111,9 @@ jobs:
      
     - name: OPA Policy Result Check
       id: opa_result_parse
-      #if: result.result != []
       run: |
        JSON=$(cat result.json)
-       echo "${JSON//'%'/'%25'}" 
-       #for tag in ${{ fromJSON(result.json).result[0] }}
-       # do
-       #   echo tag
-       # done
+       echo "${JSON//'%'/'%25'}"
        echo "::set-output name=opa_result::$JSON"
        #exit 1
        
