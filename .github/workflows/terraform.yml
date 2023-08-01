@@ -116,6 +116,7 @@ jobs:
        if [[ $(jq '.result[0].result' result.json) == [] ]]; then
            continue;
        else
+           echo $(jq '.result[0].result' result.json)
            exit 1
        fi
        #echo "${tesst}"
