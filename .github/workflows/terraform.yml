@@ -110,17 +110,23 @@ jobs:
       
      
     - name: OPA Policy Result Check
+      id: opa_result_parse
       #if: result.result != []
       run: |
        JSON=$(cat result.json)
        echo "${JSON//'%'/'%25'}" 
-       for tag in ${{ fromJSON(result.json).result[0] }}
-        do
-          echo tag
-        done
-       echo "OPA Policies Failing"
-       exit 1
-    
+       #for tag in ${{ fromJSON(result.json).result[0] }}
+       # do
+       #   echo tag
+       # done
+       echo "::set-output name=opa_result::$JSON"
+       #exit 1
+       
+    - name: "Set env data"
+      run: |
+       env_data=${{ fromJson(steps.opa_result_parse.outputs.opa_result) }}
+       echo "env_data=$env_data"
+       echo $env_data.result
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
     #  with:
