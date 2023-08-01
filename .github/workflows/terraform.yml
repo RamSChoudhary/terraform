@@ -112,13 +112,13 @@ jobs:
     - name: OPA Policy Result Check
       id: opa_result_parse
       run: |
-       tesst=$(jq '.result[0].result' result.json)
-       if [[ ${{tesst}} == [] ]]; then
+       #tesst=$(jq '.result[0].result' result.json)
+       if [[ $(jq '.result[0].result' result.json) == [] ]]; then
            continue;
        else
            exit 1
        fi
-       echo "${tesst}"
+       #echo "${tesst}"
        #echo "${JSON//'%'/'%25'}"
        #echo "::set-output name=opa_result::$JSON"
        #exit 1
