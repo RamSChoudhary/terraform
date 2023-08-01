@@ -113,15 +113,11 @@ jobs:
       id: opa_result_parse
       run: |
        JSON=$(cat result.json)
+       echo "${jq '.result[0].result' result.json}"
        echo "${JSON//'%'/'%25'}"
-       echo "::set-output name=opa_result::$JSON"
+       #echo "::set-output name=opa_result::$JSON"
        #exit 1
        
-    - name: "Set env data"
-      run: |
-       env_data=${{ fromJson(steps.opa_result_parse.outputs.opa_result) }}
-       echo "env_data=$env_data"
-       echo $env_data.result
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
     #  with:
