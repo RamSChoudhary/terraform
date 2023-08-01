@@ -113,6 +113,11 @@ jobs:
       id: opa_result_parse
       run: |
        tesst=$(jq '.result[0].result' result.json)
+       if [[ ${{tesst}} == [] ]]; then
+           continue;
+       else
+           exit 1
+       fi
        echo "${tesst}"
        #echo "${JSON//'%'/'%25'}"
        #echo "::set-output name=opa_result::$JSON"
