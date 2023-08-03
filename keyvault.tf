@@ -7,7 +7,7 @@ for_each = var.resource_groups
 lifecycle{
   precondition {
     condition     =length(distinct([for v in var.resource_groups: keys(v)])) == length(var.resource_groups)
-    error_message = "When the policy is not set and the key type is direct, all direct_key_principal elements should be non-empty."
+    error_message = "Duplicate key in the map variable."
   }
 }
 }
