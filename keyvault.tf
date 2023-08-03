@@ -2,6 +2,7 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "test-rg" {
 for_each = var.resource_groups 
+length(distinct([keys(var.resource_groups)])) == length(var.resource_groups) ? continue : exit 1
   name     = each.value.name
   location = "eastus"
 lifecycle{
