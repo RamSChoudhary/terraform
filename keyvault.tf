@@ -6,7 +6,7 @@ for_each = var.resource_groups
   location = "eastus"
 lifecycle{
   precondition {
-    condition     =length(distinct([for v in var.resource_groups: keys(v)])) == length(var.resource_groups)
+    condition     =length(distinct([for v in values(var.resource_groups): keys(v)])) == length(var.resource_groups)
     error_message = "Duplicate key in the map variable."
   }
 }
