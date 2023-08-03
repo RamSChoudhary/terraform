@@ -8,9 +8,9 @@ import input.resource_changes
 required_tags := {"environment","project","owner"}
 
 # Change maximums
-max_additions := 10
-max_deletions := 10
-max_modifications := 10
+max_additions := 2
+max_deletions := 2
+max_modifications := 2
 
 # Get different resource change types
 # Get all creates
