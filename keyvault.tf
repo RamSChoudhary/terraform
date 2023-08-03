@@ -1,7 +1,8 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "test-rg" {
-  name     = "test-rg"
+for_each = var.resource_groups 
+  name     = each.value.name
   location = "eastus"
 }
 
