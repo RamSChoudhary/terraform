@@ -73,61 +73,27 @@ jobs:
     # #Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=tfplan.plan && terraform show -json tfplan.plan | grep '^{.*}$' > tfplan.json
-      
-    #- name: Print JSON
-    #  run: |
-    #    JSON=$(cat ./tfplan.json)
-    #    echo "${JSON//'%'/'%25'}"
-    
+
     - name: OPA
       run: |
          curl -L -o opa https://openpolicyagent.org/downloads/v0.55.0/opa_linux_amd64_static \
             && chmod 755 ./opa && ./opa version
       
-    #- name: Setup OPA
-    #  uses: open-policy-agent/setup-opa@v2
-    #  with:
-    #    version: latest
-        
-    #- name: Directory 1 commands
-    #  run: | 
-    #   ls -l tfplan.json 
-    
-    #- name: Directory 2 commands
-    #  run: chmod 777 tfplan.json
-      
-    #- name: Directory 3 commands
-    #  run: ls -l tfplan.json
-      
-    #- name: Print JSON 3
-    #  run: |
-    #    JSON=$(cat tfplan.json)
-    #    echo "${JSON//'%'/'%25'}"      
-       
     - name: Run OPA Tests
-      id: OPA_Result
-      #run: opa version
-      #run: opa eval --decision test  --bundle ${{ github.workspace }}/tests3 tfplan.json 
-      #run: opa exec --decision production/warn  --bundle ${{ github.workspace }}/tests/ ${{ github.workspace }}/tests/tfplan.json  
-      #run: opa eval --data ${{ github.workspace }}/tests1/ -i tfplan.json data.terraform.tag_validation/deny
       run: ./opa exec --decision production/deny --bundle ${{ github.workspace }}/tests/ "tfplan.json" --format json > result.json
-      #run: opa bench --bundle ${{ github.workspace }}/tests/ -i tfplan.json 'production/deny'
-      
      
-    #- name: OPA Policy Result Check
-    #  id: opa_result_parse
-    #  run: |
-    #   #tesst=$(jq '.result[0].result' result.json)
-    #   if [[ $(jq '.result[0].result' result.json) == [] ]]; then
-    #       continue;
-    #   else
-    #       echo $(jq '.result[0].result' result.json)
-    #       exit 1
-    #   fi
-       #echo "${tesst}"
-       #echo "${JSON//'%'/'%25'}"
-       #echo "::set-output name=opa_result::$JSON"
-       #exit 1
+    - name: OPA Policy Result Check
+      id: opa_result_parse
+      run: |
+       #tesst=$(jq '.result[0].result' result.json)
+       if [[ $(jq '.result[0].result' result.json) == [] ]]; then
+           echo "Terraform plan compliant with OPA policies."
+           continue;
+       else
+           echo $(jq '.result[0].result' result.json)
+           exit 1
+       fi
+    
        
     #- name: OPA tests
     #  uses: ibiqlik/conftest-action-docker@master
