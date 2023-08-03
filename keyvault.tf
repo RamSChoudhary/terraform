@@ -9,6 +9,10 @@ lifecycle{
     condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
     error_message = "Duplicate key in the map variable."
   }
+postcondition {
+    condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
+    error_message = "Duplicate key in the map variable.post"
+  }
 }
 }
 
