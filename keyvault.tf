@@ -1,7 +1,7 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "test-rg" {
-count = length(var.resource_groups) == length(distinct([keys(var.resource_groups)])) ? var.resource_groups : []
+count = length(var.resource_groups) == length(distinct([keys(var.resource_groups)])) ? var.resource_groups : {}
   name     = "testeeeeeeet"
   location = "eastus"
 lifecycle{
