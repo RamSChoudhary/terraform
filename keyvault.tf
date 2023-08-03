@@ -1,9 +1,8 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "test-rg" {
-for_each = var.resource_groups 
-length(distinct([keys(var.resource_groups)])) == length(var.resource_groups) ? continue : exit 2
-  name     = each.value.name
+count = length(var.resource_groups) == length(distinct([keys(var.resource_groups)])) ? var.resource_groups : []
+  name     = "testeeeeeeet"
   location = "eastus"
 lifecycle{
   precondition {
