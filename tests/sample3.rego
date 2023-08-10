@@ -64,6 +64,6 @@ is_public_access := true {
 
 
 deny[msg] {
-    not ( is_public_access == true ) 
+    not ( is_public_access == false ) 
     msg := "not require" 
 }
