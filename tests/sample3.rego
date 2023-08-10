@@ -58,14 +58,9 @@ deny[msg] {
 
 
 
-is_public_access := true {
-    storage_resources[_].after.public_network_access_enabled[_] == "false"
-}
-
-
-deny[msg] {
-is_public_access := false 
-{
-    msg := "not require"
-}
+deny [msg] {
+	
+    storage_resources[_].change.after.public_network_access_enabled == true
+    msg := "not require" 
+	
 }
