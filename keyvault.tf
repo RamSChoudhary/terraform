@@ -1,19 +1,19 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "test-rg" {
-count = length(var.resource_groups) == length(distinct([keys(var.resource_groups)])) ? var.resource_groups : {}
+#count = length(var.resource_groups) == length(distinct([keys(var.resource_groups)])) ? var.resource_groups : {}
   name     = "testeeeeeeet"
   location = "eastus"
-lifecycle{
-  precondition {
-    condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
-    error_message = "Duplicate key in the map variable."
-  }
-postcondition {
-    condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
-    error_message = "Duplicate key in the map variable.post"
-  }
-}
+#lifecycle{
+#  precondition {
+#    condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
+#    error_message = "Duplicate key in the map variable."
+#  }
+#postcondition {
+#    condition     =length(distinct([keys(var.resource_groups)])) == length(var.resource_groups)
+#    error_message = "Duplicate key in the map variable.post"
+#  }
+#}
 }
 
 #resource "azurerm_key_vault" "test-kv" {
