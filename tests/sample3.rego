@@ -53,3 +53,15 @@ deny[msg] {
     resources != []
     msg := sprintf("The following resources are missing required tags: %s", [resources[_].address])
 }
+
+storage_resources := get_resources_by_type("azurerm_storage_account", resource_changes)
+
+is_public_access := true {
+    storage_resources[_].after.public_network_access_enabled[_] == "false"
+}
+
+
+deny[msg] {
+    not ( is_public_access == true ) 
+    msg := "not require" 
+}
