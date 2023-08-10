@@ -16,6 +16,8 @@ max_modifications := 2
 # Get all creates
 resources_added := plan_functions.get_resources_by_action("create", resource_changes)
 
+storage_resources := plan_functions.get_resources_by_type("azurerm_storage_account", resource_changes)
+
 # Get all deletes
 resources_removed := plan_functions.get_resources_by_action("delete", resource_changes)
 
@@ -54,7 +56,7 @@ deny[msg] {
     msg := sprintf("The following resources are missing required tags: %s", [resources[_].address])
 }
 
-storage_resources := get_resources_by_type("azurerm_storage_account", resource_changes)
+
 
 is_public_access := true {
     storage_resources[_].after.public_network_access_enabled[_] == "false"
