@@ -19,4 +19,3 @@ provider_azurerm_features_keyvault = {
   purge_soft_delete_on_destroy = true
 }
 
-enable_private_endpoint = true
