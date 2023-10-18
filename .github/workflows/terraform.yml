@@ -72,7 +72,7 @@ jobs:
 
     # #Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var-file=terra.tfvars -no-color -out=tfplan.plan && terraform show -json tfplan.plan | grep '^{.*}$' > tfplan.json
+      run: terraform plan -input=false -var-file=terra.tfvars -var-file=terra1.tfvars -no-color -out=tfplan.plan && terraform show -json tfplan.plan | grep '^{.*}$' > tfplan.json
 
     - name: OPA
       run: |
